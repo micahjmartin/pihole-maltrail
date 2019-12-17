@@ -15,7 +15,7 @@ services:
     environment:
       TZ: 'America/New_York'
       WEBPASSWORD: admin
-      ServerIP: "192.168.58.129"
+      ServerIP: "${HOST_IP}"
     # Store the pihole data in a separate directory
     volumes:
       - './pihole/pihole/:/etc/pihole/'
@@ -32,6 +32,6 @@ services:
     privileged: true
     restart: unless-stopped
     environment:
-      PIHOLE_IP: "192.168.58.129"
+      PIHOLE_IP: "${HOST_IP}"
 
 
