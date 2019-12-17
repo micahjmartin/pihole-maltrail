@@ -2,7 +2,7 @@ version: "3"
 
 services:
   pihole:
-    image: pihole/pihole:latest
+    build: pihole
     network_mode: 'host'
     privileged: true
     # Ports arent needed for host mode networking
@@ -27,7 +27,7 @@ services:
 
   # This is the maltrail service
   maltrail:
-    build: .
+    build: maltrail
     network_mode: 'host'
     privileged: true
     restart: unless-stopped
