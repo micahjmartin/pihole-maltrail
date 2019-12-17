@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    network_mode: 'host'
+    privileged: true
+    # Ports arent needed for host mode networking
+    #ports:
+    #  - "53:53/tcp"
+    #  - "53:53/udp"
+    #  - "67:67/udp"
+    #  - "80:80/tcp"
+    #  - "443:443/tcp"
+    environment:
+      TZ: 'America/New_York'
+      WEBPASSWORD: admin
+      ServerIP: "192.168.58.129"
+    # Store the pihole data in a separate directory
+    volumes:
+      - './pihole/pihole/:/etc/pihole/'
+      - './pihole/dnsmasq/:/etc/dnsmasq.d/'
+    restart: unless-stopped
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+
+  # This is the maltrail service
+  maltrail:
+    build: .
+    network_mode: 'host'
+    privileged: true
+    restart: unless-stopped
+    environment:
+      PIHOLE_IP: "192.168.58.129"
+
+
