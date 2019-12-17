@@ -1,22 +1,14 @@
-FROM debian:jessie
+FROM python:3-alpine
 
-RUN apt-get update \ 
-    && apt-get upgrade -y \
-    && apt-get install -y python3 python3-dev python3-pip
+RUN apk update && apk add g++ libpcap-dev git
 
-RUN apt-get install -y libpcap-dev
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
-RUN pip3 install pcapy
+RUN git clone https://github.com/stamparm/maltrail /opt/maltrail
+WORKDIR /opt/maltrail
 
-RUN mkdir /root/maltrail
-WORKDIR /root/maltrail
+COPY entrypoint.sh .
+COPY pihole.py .
 
-COPY ./ ./
-
-RUN python3 /root/maltrail/core/update.py
-
-RUN echo "python3 /root/maltrail/sensor.py &" >> /root/run.sh
-#RUN echo "python3 /root/maltrail/server.py" >> /root/run.sh
-RUN echo "python3 /root/maltrail/pihole.py" >> /root/run.sh
-
-ENTRYPOINT  ["/bin/bash", "/root/run.sh"]
+ENTRYPOINT  ["/bin/bash", "entrypoint.sh"]
