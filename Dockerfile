@@ -11,4 +11,4 @@ WORKDIR /opt/maltrail
 COPY entrypoint.sh .
 COPY pihole.py .
 
-ENTRYPOINT  ["/bin/bash", "entrypoint.sh"]
+ENTRYPOINT  ["/bin/sh", "entrypoint.sh"]
