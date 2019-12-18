@@ -20,7 +20,7 @@ services:
     volumes:
       - './pihole/pihole/:/etc/pihole/'
       - './pihole/dnsmasq/:/etc/dnsmasq.d/'
-      - './pihole/pihole.log:/var/log/pihole.log'
+      - './pihole/logs/:/var/log/pihole.log'
     restart: unless-stopped
     dns:
       - 127.0.0.1
@@ -34,9 +34,9 @@ services:
     restart: unless-stopped
     environment:
       PIHOLE_IP: "${HOST_IP}"
-      PIHOLE_LOG: "/var/log/pihole.log"
+      PIHOLE_LOG: "logs/pihole.log"
     volumes:
-      - './pihole/pihole.log:/var/log/pihole.log'
+      - './pihole/logs:logs/'
 
 
 
