@@ -20,7 +20,7 @@ FORMAT_NAME="PiHole"
 PIHOLE_IP=""
 # 
 
-def parse_log(self, log):
+def parse_log(log):
     """Parse a log file and return the date, type, and domain of the log"""
     log = log.split("\n")
     # Check to see if the first line is a query
@@ -64,10 +64,10 @@ class FileReader(object):
     def process_logfile(self):
         # We need to read the file cause its new
         with open(self.logfile, "r+") as fil:
-            data = fil.read().split()
+            data = fil.read().split("\n")
             # Clear the file
-            fil.write("")
-            self.last_checked = time.time() + 1
+            fil.truncate(0)
+            self.last_checked = time.time() - 1
         print("Ok we read the file at", self.last_checked)
         i = 0
         while True:
