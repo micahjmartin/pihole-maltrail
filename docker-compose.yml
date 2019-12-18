@@ -20,7 +20,7 @@ services:
     volumes:
       - './pihole/pihole/:/etc/pihole/'
       - './pihole/dnsmasq/:/etc/dnsmasq.d/'
-      - './pihole/logs/:/var/log/'
+      - './pihole/logs/:/var/log/ph'
     restart: unless-stopped
     dns:
       - 127.0.0.1
