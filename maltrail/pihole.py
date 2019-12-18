@@ -63,7 +63,7 @@ class FileReader(object):
 
     def process_logfile(self):
         # We need to read the file cause its new
-        with open(self.logfile, "rw") as fil:
+        with open(self.logfile, "r+") as fil:
             data = fil.read().split()
             # Clear the file
             fil.write()
@@ -144,7 +144,7 @@ def main():
     global PIHOLE_IP
     PIHOLE_IP = os.environ.get("PIHOLE_IP", "0.0.0.0")
     
-    pilog = os.environ.get("PIHOLE_LOG", False))
+    pilog = os.environ.get("PIHOLE_LOG", False)
     if pilog:
         run_watcher(pilog)
     else:
