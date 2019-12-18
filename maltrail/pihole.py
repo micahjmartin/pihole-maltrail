@@ -79,7 +79,7 @@ class LogServer(socketserver.BaseRequestHandler):
         domain = res.group(3)
         # once we have all this data, convert it into a massive tuple for log_event
         # sec, usec, src_ip, src_port, dst_ip, dst_port, proto, trail_type, trail, info, reference
-        event_tuple = (date, 0, src, 9999, PIHOLE_IP, 53, "UDP", "DNS", domain, "PiHole Sink (suspicious)", "pi.hole")
+        event_tuple = (date, 0, src, 9999, PIHOLE_IP, 53, "UDP", "DNS", domain, "PiHole Sink (spammer)", "pi.hole")
         return event_tuple
 
 class _ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
