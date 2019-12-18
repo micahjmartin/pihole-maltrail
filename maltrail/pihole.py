@@ -66,7 +66,7 @@ class FileReader(object):
         with open(self.logfile, "r+") as fil:
             data = fil.read().split()
             # Clear the file
-            fil.write()
+            fil.write("")
             self.last_checked = time.time() + 1
         print("Ok we read the file at", self.last_checked)
         i = 0
