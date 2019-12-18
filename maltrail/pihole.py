@@ -67,7 +67,7 @@ class FileReader(object):
             data = fil.read().split("\n")
             # Clear the file
             fil.truncate(0)
-            self.last_checked = time.time() - 1
+            self.last_checked = time.time() + 2
         print("Ok we read the file at", self.last_checked)
         i = 0
         while True:
